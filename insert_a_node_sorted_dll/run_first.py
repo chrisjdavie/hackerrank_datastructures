@@ -21,25 +21,33 @@ class Node(object):
 
 
 def SortedInsert(head, data):
+    new_node = Node(data)
+    if not head:
+        return new_node
 
-    prev_node = None
     next_node = head
 
-    while(next_node and next_node.data < data):
+    while(next_node):
+
+        if next_node.data >= new_node.data:
+            new_node.prev = next_node.prev
+            if new_node.prev:            
+                new_node.prev.next = new_node
+            
+            new_node.next = next_node
+            next_node.prev = new_node
+
+            if next_node is head:
+                head = new_node
+            break
+
         prev_node = next_node
         next_node = next_node.next
 
-    new_node = Node(data)
-
-    new_node.prev = prev_node
-    if prev_node:
-        prev_node.next = new_node
     else:
-        head = new_node
-
-    new_node.next = next_node
-    if next_node:
-        next_node.prev = new_node
+        
+        prev_node.next = new_node
+        new_node.prev = prev_node
 
     return head
 
