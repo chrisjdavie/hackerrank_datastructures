@@ -1,11 +1,10 @@
 
 def _pre_order(node):
-    order = [ node.data ]
+    order = [ ]
     
-    if node.left:
+    if node:
+        order.append(node.data)
         order += _pre_order(node.left)
-    
-    if node.right:
         order += _pre_order(node.right)
 
     return order
@@ -13,11 +12,7 @@ def _pre_order(node):
 
 def preOrder(root):
     
-    if root:
-        order = _pre_order(root)
-    else:
-        order = []
+    order = _pre_order(root)
     
-    for o in order:
-        print(o)
+    print(*order)
 

@@ -12,6 +12,10 @@ class Node(object):
 
 class TestPreOrder(unittest.TestCase):
 
+    def test_null(self):
+        order = _pre_order(None)
+        self.assertSequenceEqual([], order)
+
     
     def test_single_node(self):
         
