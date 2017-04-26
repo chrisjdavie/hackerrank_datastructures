@@ -1,15 +1,29 @@
 
-class Node:
+from .swap_node import Node, swap_node
+from .in_order import inOrder
 
-    def __init__(self, data, left = None, right = None):
+N = int(input())
 
-        self.data = data
-        self.left = left
-        self.right = right
+nodes = []
 
-
-def swap_node(head, target_height, current_height):
-
+for i in range(N):    
+    nodes.append(Node(i+1))
     
-    pass
+for a_node in nodes:
+    
+    lr = input().strip().split()
+    l, r = int(lr[0]), int(lr[1])
+
+    if l != -1:
+        a_node.left = nodes[l-1]
+    if r != -1:
+        a_node.right = nodes[r-1]
+
+K = int(input())
+
+for _ in range(K):
+
+    height = int(input())
+    swap_node(nodes[0],height,0)
+    inOrder(nodes[0])
 
