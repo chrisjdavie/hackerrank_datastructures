@@ -115,6 +115,6 @@ class TestRebalance(self):
         expected_head.left = Node(3)
         expected_head.right = Node(4)
 
-
+        self.assert_trees_equal(expected_head, rebalanced_head)
 
         
