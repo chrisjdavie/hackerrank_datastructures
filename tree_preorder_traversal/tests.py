@@ -3,12 +3,7 @@ import unittest
 
 from .run import _pre_order
 
-class Node(object):
-
-    def __init__(self, data, left=None, right=None):
-        self.data = data
-        self.left = left
-        self.right = right
+from tree_testing.node import Node
 
 class TestPreOrder(unittest.TestCase):
 
