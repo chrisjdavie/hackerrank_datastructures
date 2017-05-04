@@ -11,7 +11,7 @@ class SelfBalanceNode(Node):
     def insert(self, new_node):
 
         self._insert(new_node)
-        self.rebalance()
+        return self.rebalance()
 
 
     def rebalance(self):
