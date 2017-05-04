@@ -5,6 +5,12 @@ from .run import rebalance
 from .run import SelfBalanceNode as Node
 
 
+class TestInsert(unittest.TestCase):
+
+    def test(self):
+        self.fail()
+
+
 class Test_BalanceFactor(unittest.TestCase):
     # the tree is self balancing - in principle, the balance factor should
     # never be greater than |2|. If it is, then I'm not sure what the 
@@ -173,9 +179,9 @@ class TestRebalance(TreeTesting):
         head = Node(5)
         expected_head = head.copy()
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
 
     def test_left_node(self):
@@ -185,9 +191,9 @@ class TestRebalance(TreeTesting):
 
         expected_head = head.copy()
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
 
     def test_right_node(self):
@@ -197,9 +203,9 @@ class TestRebalance(TreeTesting):
 
         expected_head = head.copy()
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
 
     def test_balanced_left_right(self):
@@ -210,9 +216,9 @@ class TestRebalance(TreeTesting):
 
         expected_head = head.copy()
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
 
     def test_left_left(self):
@@ -225,24 +231,24 @@ class TestRebalance(TreeTesting):
         expected_head.left = Node(3)
         expected_head.right = Node(5)
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
 
     def test_left_right(self):
 
         head = Node(5)
         head.left = Node(3)
-        head.right = Node(4)
+        head.left.right = Node(4)
 
         expected_head = Node(4)
         expected_head.left = Node(3)
         expected_head.right = Node(5)
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
 
     def test_right_right(self):
@@ -255,23 +261,23 @@ class TestRebalance(TreeTesting):
         expected_head.left = Node(3)
         expected_head.right = Node(5)
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
 
     def test_right_left(self):
 
         head = Node(3)
         head.right = Node(5)
-        head.right.right = Node(4)
+        head.right.left = Node(4)
 
         expected_head = Node(4)
         expected_head.left = Node(3)
-        expected_head.right = Node(4)
+        expected_head.right = Node(5)
 
-        rebalanced_head = rebalance(head)
+        head = head.rebalance()
 
-        self.assert_trees_equal(expected_head, rebalanced_head)
+        self.assert_trees_equal(expected_head, head)
 
         
