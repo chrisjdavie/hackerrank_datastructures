@@ -302,5 +302,22 @@ class TestRebalance(TreeTesting):
         self.assert_trees_equal(expected_head, head)
 
 
+    def test_rebalance_one_sided(self):
+        """"This differs from the above, in that the head is unchanged"""
 
+        head = Node(2)
+        head.left = Node(1)
+        head.right = Node(4)
+        head.right.right = Node(6)
+        head.right.right.left = Node(5)
         
+        expected_head = Node(2)
+        expected_head.left = Node(1)
+        expected_head.right = Node(5)
+        expected_head.right.left = Node(4)
+        expected_head.right.right = Node(6)
+
+        head = head.rebalance()
+
+        self.assert_trees_equal(expected_head, head)
+
