@@ -280,4 +280,27 @@ class TestRebalance(TreeTesting):
 
         self.assert_trees_equal(expected_head, head)
 
+
+    def test_rebalance_middle_tree(self):
+
+        head = Node(2)
+        head.left = Node(1)
+        head.right = Node(4)
+        head.right.left = Node(3)
+        head.right.right = Node(6)
+        head.right.right.left = Node(5)
+        
+        expected_head = Node(4)
+        expected_head.left = Node(2)
+        expected_head.left.left = Node(1)
+        expected_head.left.right = Node(3)
+        expected_head.right = Node(6)
+        expected_head.right.left = Node(5)
+
+        head = head.rebalance()
+
+        self.assert_trees_equal(expected_head, head)
+
+
+
         

@@ -22,8 +22,8 @@ class SelfBalanceNode(Node):
     def _rebalance(self):
         
         replace_current = self
-        bf = self._balance_factor()
-        
+        bf = self._balance_factor() 
+
         if bf == 2:
             left_bf, replace_left = self.left._rebalance()
             if left_bf == -1:
@@ -35,8 +35,8 @@ class SelfBalanceNode(Node):
                 self.left = replace_left
 
         if bf == -2:
-            right_bf, replace_right = self.right._rebalance()
-            
+            right_bf, replace_right = self.right._rebalance()            
+
             if right_bf == 1:
                 self.right_left_case()
 
